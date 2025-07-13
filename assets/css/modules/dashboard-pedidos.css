@@ -1,0 +1,664 @@
+/*
+ * Estilos específicos para el módulo Dashboard
+ * Extiende admin-theme.css con personalizaciones específicas
+ */
+
+/* ==========================================
+   COLORES DE FILAS POR ESTADO - NUEVOS
+   ========================================== */
+
+/* No Aceptado (0) - Amarillo suave */
+#pedidosTable tbody tr.table-no-aceptado {
+    background-color: #FEF3C7 !important; /* amber-100 */
+}
+
+#pedidosTable tbody tr.table-no-aceptado:hover {
+    background-color: #FDE68A !important; /* amber-200 */
+}
+
+/* Por Fabricar (2) - Amarillo medio */
+#pedidosTable tbody tr.table-por-fabricar {
+    background-color: #FDE68A !important; /* amber-200 */
+}
+
+#pedidosTable tbody tr.table-por-fabricar:hover {
+    background-color: #FCD34D !important; /* amber-300 */
+}
+
+/* Fabricando (3,4,5) - Celeste claro */
+#pedidosTable tbody tr.table-fabricando {
+    background-color: #DBEAFE !important; /* blue-100 */
+}
+
+#pedidosTable tbody tr.table-fabricando:hover {
+    background-color: #BFDBFE !important; /* blue-200 */
+}
+
+/* Producto Listo (6) - Turquesa */
+#pedidosTable tbody tr.table-producto-listo {
+    background-color: #5EEAD4 !important; /* teal-300 */
+}
+
+#pedidosTable tbody tr.table-producto-listo:hover {
+    background-color: #2DD4BF !important; /* teal-400 */
+}
+
+/* En Despacho/Camión (7,8) - Verde lima */
+#pedidosTable tbody tr.table-en-despacho {
+    background-color: #BEF264 !important; /* lime-300 */
+}
+
+#pedidosTable tbody tr.table-en-despacho:hover {
+    background-color: #A3E635 !important; /* lime-400 */
+}
+
+/* Entregado (9) - Verde esmeralda */
+#pedidosTable tbody tr.table-entregado {
+    background-color: #6EE7B7 !important; /* emerald-300 */
+}
+
+#pedidosTable tbody tr.table-entregado:hover {
+    background-color: #34D399 !important; /* emerald-400 */
+}
+
+/* Filas expandidas - mantener indicador pero respetar color de fondo */
+#pedidosTable tbody tr.shown {
+    border-left: 4px solid var(--primary-color);
+    box-shadow: inset 0 1px 3px rgba(79, 70, 229, 0.1);
+}
+
+/* ==========================================
+   COLORES DE FILAS POR ESTADO - FIN
+   ========================================== */
+
+/* Header con acciones adicionales */
+.card-header .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.card-header .badge {
+    font-size: 0.6875rem;
+    padding: 0.125rem 0.5rem;
+}
+
+/* Tabla de pedidos específica */
+#pedidosTable .order-id {
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 0.8125rem;
+}
+
+#pedidosTable .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+/* Estados de pedidos con colores específicos */
+.status-badge.pendiente,
+.status-badge.no-aceptado {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+    color: #92400e;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.status-badge.fabricando,
+.status-badge.por-fabricar {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.status-badge.entregado {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+    color: var(--success-color);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-badge.cancelado {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.15));
+    color: var(--danger-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Información de cliente */
+#pedidosTable .client-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+#pedidosTable .client-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.8125rem;
+}
+
+#pedidosTable .client-rut {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+/* Información de contacto */
+#pedidosTable .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+#pedidosTable .contact-phone {
+    color: var(--success-color);
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+#pedidosTable .contact-address {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.3;
+}
+
+/* Total del pedido */
+#pedidosTable .order-total {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.875rem;
+}
+
+/* Forma de pago con iconos específicos */
+#pedidosTable .payment-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+#pedidosTable .payment-method i {
+    font-size: 0.875rem;
+}
+
+/* Iconos específicos para métodos de pago */
+#pedidosTable .payment-method.transferencia {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    color: var(--success-color);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+#pedidosTable .payment-method.transferencia::before {
+    content: '\f53d'; /* fas fa-university */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.25rem;
+}
+
+#pedidosTable .payment-method.efectivo {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+    color: var(--warning-color);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+#pedidosTable .payment-method.efectivo::before {
+    content: '\f3d1'; /* fas fa-money-bill-wave */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.25rem;
+}
+
+#pedidosTable .payment-method.tarjeta {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(99, 102, 241, 0.1));
+    color: var(--primary-color);
+    border-color: rgba(79, 70, 229, 0.3);
+}
+
+#pedidosTable .payment-method.tarjeta::before {
+    content: '\f09d'; /* fas fa-credit-card */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 0.25rem;
+}
+
+/* Acciones de la tabla - MÁS GRANDES Y ENTENDIBLES */
+#pedidosTable .table-actions {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#pedidosTable .table-actions .btn {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: var(--border-radius-sm);
+    border: none;
+    min-width: 32px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+#pedidosTable .table-actions .btn i {
+    font-size: 0.75rem;
+}
+
+#pedidosTable .table-actions .btn-edit {
+    background: linear-gradient(135deg, var(--info-color), var(--primary-color));
+    color: white;
+}
+
+#pedidosTable .table-actions .btn-edit:hover::after {
+    content: 'Editar';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-color);
+    color: white;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+#pedidosTable .table-actions .btn-view {
+    background: linear-gradient(135deg, var(--secondary-color), var(--text-muted));
+    color: white;
+}
+
+#pedidosTable .table-actions .btn-view:hover::after {
+    content: 'Ver Detalle';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-color);
+    color: white;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+#pedidosTable .table-actions .btn-delete {
+    background: linear-gradient(135deg, var(--danger-color), var(--pink-color));
+    color: white;
+}
+
+#pedidosTable .table-actions .btn-delete:hover::after {
+    content: 'Eliminar';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-color);
+    color: white;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+#pedidosTable .table-actions .btn-history {
+    background: linear-gradient(135deg, var(--purple-color), var(--primary-color));
+    color: white;
+}
+
+#pedidosTable .table-actions .btn-history:hover::after {
+    content: 'Historial';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-color);
+    color: white;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* Hover effects para botones de acción - SIN MOVIMIENTO */
+#pedidosTable .table-actions .btn:hover {
+    box-shadow: var(--shadow-md);
+    filter: brightness(1.1);
+    /* ❌ REMOVIDO: transform que causaba movimiento */
+}
+
+#pedidosTable .table-actions .btn:active {
+    box-shadow: var(--shadow-sm);
+    /* ❌ REMOVIDO: transform que causaba movimiento */
+}
+
+/* Efectos de tooltip para los botones */
+#pedidosTable .table-actions .btn {
+    position: relative;
+    overflow: visible;
+}
+
+/* Mejorar la interacción con las filas - HOVER ESTABLE */
+#pedidosTable tbody tr.clickable-row:hover {
+    /* Solo mantener el hover básico definido arriba */
+}
+
+/* Indicador visual de que la fila es clicable - SIMPLIFICADO */
+#pedidosTable tbody tr.clickable-row {
+    position: relative;
+}
+
+/* Filas clicables para expandir - HOVER ESTABLE */
+#pedidosTable tbody tr {
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+#pedidosTable tbody tr:hover {
+    background-color: rgba(79, 70, 229, 0.08);
+    /* Solo cambio de color de fondo, sin movimiento */
+}
+
+#pedidosTable tbody tr.clickable-row {
+    position: relative;
+}
+
+#pedidosTable tbody tr.clickable-row::after {
+    content: '\f054'; /* fas fa-chevron-right */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    transition: all var(--transition-fast);
+    opacity: 0;
+}
+
+#pedidosTable tbody tr.clickable-row:hover::after {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+#pedidosTable tbody tr.shown.clickable-row::after {
+    transform: translateY(-50%) rotate(90deg);
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+/* Filas expandidas */
+#pedidosTable tbody tr.shown {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(79, 70, 229, 0.05));
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Detalles expandidos */
+.order-details {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+}
+
+.order-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-details-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.order-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.detail-section {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.detail-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.detail-value {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Productos en detalles */
+.products-list {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.product-specs {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.125rem;
+}
+
+.product-quantity {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-right: var(--spacing-md);
+}
+
+.product-price {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Estados del dashboard específicos */
+.dashboard-stats .stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-stats .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.dashboard-stats .stat-card:hover::after {
+    opacity: 1;
+}
+
+/* Responsive específico para dashboard */
+@media (max-width: 768px) {
+    .order-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #pedidosTable .client-info,
+    #pedidosTable .contact-info {
+        font-size: 0.6875rem;
+    }
+    
+    #pedidosTable .table-actions {
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+    
+    #pedidosTable .table-actions .btn {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+/* Loading específico para dashboard */
+.dashboard-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xxl);
+    color: var(--text-muted);
+}
+
+.dashboard-loading i {
+    margin-right: var(--spacing-sm);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Notificaciones del dashboard */
+.dashboard-notification {
+    position: fixed;
+    top: 80px;
+    right: var(--spacing-lg);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    min-width: 300px;
+    transform: translateX(100%);
+    transition: transform var(--transition-normal);
+}
+
+.dashboard-notification.show {
+    transform: translateX(0);
+}
+
+.dashboard-notification .notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.dashboard-notification .notification-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.dashboard-notification .notification-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+}
+
+.dashboard-notification .notification-message {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ⭐ OPCIÓN 1: TODO EN UNO (RECOMENDADA) */
+.whatsapp-integrated {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    border-radius: 20px;
+    padding: 6px 12px;
+    color: white !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+    font-size: 0.85rem;
+    gap: 6px;
+    min-width: 120px;
+    justify-content: center;
+}

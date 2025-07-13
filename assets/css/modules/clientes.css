@@ -1,0 +1,244 @@
+/*
+ * Estilos específicos para el módulo de Clientes
+ * Extiende admin-theme.css sin duplicar estilos base
+ */
+
+/* Customizaciones específicas para la tabla de clientes */
+#dataTableClientes .rut-column {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--info-color);
+}
+
+#dataTableClientes .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+#dataTableClientes .phone-number {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+#dataTableClientes .instagram-handle {
+    color: #E4405F;
+    font-style: italic;
+}
+
+#dataTableClientes .instagram-handle::before {
+    content: '@';
+}
+
+/* Estados específicos de clientes */
+.cliente-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 20px;
+}
+
+.cliente-status.activo {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.cliente-status.inactivo {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: var(--secondary-color);
+}
+
+.cliente-status.nuevo {
+    background-color: rgba(23, 162, 184, 0.1);
+    color: var(--info-color);
+}
+
+/* Iconos de status */
+.cliente-status .status-icon {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* Modal específico de clientes */
+#modalNuevoCliente .modal-header,
+#modalEditarCliente .modal-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+    color: white;
+}
+
+#modalNuevoCliente .modal-header .btn-close,
+#modalEditarCliente .modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Formulario de cliente */
+.cliente-form .form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cliente-form .form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.cliente-form .section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cliente-form .section-title i {
+    color: var(--primary-color);
+}
+
+/* Validación específica para RUT */
+.rut-input {
+    position: relative;
+}
+
+.rut-input.valid .form-control {
+    border-color: var(--success-color);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='m2.3 6.73.94-.94L4.25 6.8l-.94.94zm1.41-1.41L2.72 4.31l.94-.94 1.41 1.41.94.94z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.rut-input.invalid .form-control {
+    border-color: var(--danger-color);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.5 5.5 1 1 1-1'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Estadísticas específicas de clientes */
+.clientes-stats .stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.clientes-stats .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.1) 50%);
+    border-radius: 50%;
+    transform: translate(30px, -30px);
+}
+
+/* Acciones rápidas para clientes */
+.cliente-actions {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.cliente-actions .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+}
+
+.cliente-actions .btn-whatsapp {
+    background-color: #25D366;
+    border-color: #25D366;
+    color: white;
+}
+
+.cliente-actions .btn-whatsapp:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+}
+
+.cliente-actions .btn-instagram {
+    background-color: #E4405F;
+    border-color: #E4405F;
+    color: white;
+}
+
+.cliente-actions .btn-instagram:hover {
+    background-color: #C13584;
+    border-color: #C13584;
+}
+
+/* Responsive específico para clientes */
+@media (max-width: 768px) {
+    .cliente-form .form-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .cliente-actions {
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+    
+    .cliente-actions .btn {
+        width: 100%;
+        font-size: 0.6875rem;
+    }
+}
+
+/* Animaciones específicas */
+@keyframes clienteAdded {
+    0% {
+        background-color: rgba(40, 167, 69, 0.3);
+        transform: scale(1.02);
+    }
+    100% {
+        background-color: transparent;
+        transform: scale(1);
+    }
+}
+
+.cliente-row-added {
+    animation: clienteAdded 1s ease-out;
+}
+
+/* Filtros avanzados para clientes */
+.clientes-filters {
+    background: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.clientes-filters .filter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.clientes-filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.clientes-filters .filter-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.clientes-filters .form-control,
+.clientes-filters .form-select {
+    font-size: 0.875rem;
+}

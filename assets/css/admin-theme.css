@@ -1,0 +1,704 @@
+/* 
+ * RespaldosChile Admin Theme v2.0
+ * Diseño moderno con paleta de colores profesional y layout compacto
+ */
+
+:root {
+    /* Nueva paleta de colores moderna */
+    --primary-color: #4F46E5;      /* Indigo vibrante */
+    --secondary-color: #64748B;    /* Slate gris */
+    --success-color: #10B981;      /* Emerald */
+    --warning-color: #F59E0B;      /* Amber */
+    --danger-color: #EF4444;       /* Red */
+    --info-color: #06B6D4;         /* Cyan */
+    --light-color: #F8FAFC;        /* Slate 50 */
+    --dark-color: #1E293B;         /* Slate 800 */
+    
+    /* Colores adicionales para más variedad */
+    --purple-color: #8B5CF6;       /* Violet */
+    --pink-color: #EC4899;         /* Pink */
+    --orange-color: #F97316;       /* Orange */
+    --teal-color: #14B8A6;         /* Teal */
+    
+    /* Colores de fondo y superficies */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F1F5F9;       /* Slate 100 */
+    --bg-tertiary: #E2E8F0;        /* Slate 200 */
+    --bg-accent: #EEF2FF;          /* Indigo 50 */
+    
+    /* Colores de texto */
+    --text-primary: #0F172A;       /* Slate 900 */
+    --text-secondary: #475569;     /* Slate 600 */
+    --text-muted: #94A3B8;         /* Slate 400 */
+    
+    /* Layout mejorado */
+    --sidebar-width: 260px;
+    --topbar-height: 64px;
+    
+    /* Espaciado más compacto */
+    --spacing-xs: 0.25rem;    /* 4px */
+    --spacing-sm: 0.5rem;     /* 8px */
+    --spacing-md: 0.75rem;    /* 12px */
+    --spacing-lg: 1rem;       /* 16px */
+    --spacing-xl: 1.5rem;     /* 24px */
+    --spacing-xxl: 2rem;      /* 32px */
+    
+    /* Bordes y radios */
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-color: #E2E8F0;
+    --border-color-light: #F1F5F9;
+    
+    /* Sombras más sutiles */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    /* Transiciones */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+}
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+}
+
+/* ==========================================
+   LAYOUT COMPONENTS
+   ========================================== */
+
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition-slow);
+}
+
+.content-wrapper.expanded {
+    margin-left: 0;
+}
+
+.page-content {
+    flex: 1;
+    padding: var(--spacing-xl);
+    max-width: 100%;
+}
+
+/* ==========================================
+   PAGE HEADER
+   ========================================== */
+
+.page-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.025em;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+/* ==========================================
+   STATISTICS GRID - Diseño más compacto
+   ========================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.stat-card {
+    background: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--purple-color));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+    /* ❌ REMOVIDO: transform que causaba movimiento */
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: white;
+    position: relative;
+}
+
+/* Iconos con gradientes modernos */
+.stat-icon.primary { 
+    background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+}
+.stat-icon.success { 
+    background: linear-gradient(135deg, var(--success-color), var(--teal-color));
+}
+.stat-icon.warning { 
+    background: linear-gradient(135deg, var(--warning-color), var(--orange-color));
+}
+.stat-icon.info { 
+    background: linear-gradient(135deg, var(--info-color), var(--primary-color));
+}
+.stat-icon.danger { 
+    background: linear-gradient(135deg, var(--danger-color), var(--pink-color));
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.125rem;
+    letter-spacing: -0.025em;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+/* ==========================================
+   CONTROL PANEL
+   ========================================== */
+
+.control-panel {
+    background: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.control-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.control-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.control-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   TABLE COMPONENTS - MÁS COMPACTO
+   ========================================== */
+
+.table-container {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.table-wrapper {
+    padding: 0; /* Eliminamos padding para más espacio */
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header h6 {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+/* TABLA MÁS COMPACTA */
+.table {
+    margin: 0;
+    font-size: 0.8125rem; /* Texto más pequeño */
+}
+
+.table thead th {
+    background: var(--bg-accent);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--spacing-sm) var(--spacing-md); /* PADDING REDUCIDO */
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table tbody td {
+    padding: var(--spacing-sm) var(--spacing-md); /* PADDING MUY REDUCIDO */
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-color-light);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.table tbody tr:hover {
+    background-color: var(--bg-accent);
+}
+
+.table tbody tr.shown {
+    background-color: var(--bg-accent);
+    border-left: 3px solid var(--primary-color);
+}
+
+/* DataTables específico */
+.dt-control {
+    cursor: pointer;
+    text-align: center;
+    width: 20px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.dt-control:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius-sm);
+}
+
+/* ==========================================
+   BUTTONS - Más modernos
+   ========================================== */
+
+.btn {
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+    border: 1px solid transparent;
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.75rem;
+}
+
+.btn i {
+    font-size: 0.875em;
+}
+
+/* Botones con nuevos colores */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--purple-color), var(--primary-color));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   FORMS
+   ========================================== */
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.form-check {
+    margin: 0;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-label {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   BADGES & STATUS
+   ========================================== */
+
+.badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    letter-spacing: 0.025em;
+    border-radius: var(--border-radius-sm);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.pointer {
+    cursor: pointer;
+}
+
+.text-primary { color: var(--primary-color) !important; }
+.text-success { color: var(--success-color) !important; }
+.text-warning { color: var(--warning-color) !important; }
+.text-danger { color: var(--danger-color) !important; }
+.text-info { color: var(--info-color) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* ==========================================
+   TIMELINE COMPONENTS
+   ========================================== */
+
+.timeline {
+    position: relative;
+    padding-left: var(--spacing-xl);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary-color), var(--border-color));
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+    padding-left: var(--spacing-xl);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -var(--spacing-xl);
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    z-index: 1;
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-marker::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.timeline-content {
+    background: var(--bg-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-xs);
+}
+
+.timeline-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+}
+
+.timeline-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.8125rem;
+}
+
+/* ==========================================
+   DETAIL CARDS
+   ========================================== */
+
+.detail-card {
+    margin: var(--spacing-md) 0;
+    border: none;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius);
+}
+
+.detail-card .card-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* ==========================================
+   LOADING STATES
+   ========================================== */
+
+.page-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(2px);
+}
+
+/* ==========================================
+   SCROLLBARS PERSONALIZADOS
+   ========================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        margin-left: 0;
+    }
+    
+    .page-content {
+        padding: var(--spacing-lg);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .control-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+    }
+    
+    .control-actions {
+        justify-content: stretch;
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+    }
+    
+    .table tbody td,
+    .table thead th {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-content {
+        padding: var(--spacing-md);
+    }
+    
+    .table-wrapper {
+        padding: 0;
+    }
+    
+    .stat-card {
+        padding: var(--spacing-md);
+    }
+    
+    .control-panel {
+        padding: var(--spacing-md);
+    }
+    
+    .card-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .card-header h6 {
+        font-size: 0.8125rem;
+    }
+}
+
+/* ==========================================
+   ANIMACIONES SUAVES
+   ========================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card,
+.control-panel,
+.table-container {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ==========================================
+   MICROINTERACCIONES
+   ========================================== */
+
+/* ❌ REMOVIDAS las microinteracciones que causaban movimiento
+.btn:active {
+    transform: translateY(0px);
+}
+
+.stat-card:active {
+    transform: translateY(0px);
+}
+*/
+
+/* ==========================================
+   DARK MODE READY (para futuro)
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1E293B;
+        --bg-secondary: #0F172A;
+        --bg-tertiary: #334155;
+        --text-primary: #F1F5F9;
+        --text-secondary: #CBD5E1;
+        --text-muted: #64748B;
+        --border-color: #334155;
+        --border-color-light: #475569;
+    }
+}
